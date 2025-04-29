@@ -25,6 +25,20 @@ This repository provides a Dockerfile to easily run a Tor node inside a containe
    docker exec -it tor-node nyx
    ```
 
+## Compose example
+
+   ```yaml
+   services:
+     tor-node:
+       image: tor-node:latest
+       container_name: tor-node
+       restart: unless-stopped
+       volumes:
+         - ./config:/etc/tor:ro
+       ports:
+         - 9001:9001
+   ```
+
 ## Notes
 
 - Make sure to configure your `torrc` if needed (e.g., for relay/bridge settings).
