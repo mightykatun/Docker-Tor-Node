@@ -1,9 +1,16 @@
 FROM alpine:latest
-RUN apk update && apk upgrade
-RUN apk add --no-cache \
+
+# Install necessary packages initially to prevent startup failure
+RUN apk update && apk upgrade && \
+    apk add --no-cache \
     tor \
     nyx \
     su-exec \
     bash
 
-CMD ["sh", "-c", "tor -f /etc/tor/torrc"]
+# Make sure updaes happen properly
+USER root
+
+# Entrypoint script that updates packages and then starts tor
+CMD ["sh", "-c", "apk update && apk upgrade && tor -f /etc/tor/torrc"]
+
