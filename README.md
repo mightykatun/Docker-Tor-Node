@@ -1,6 +1,6 @@
 # Tor Node in Docker
 
-This repository provides a Dockerfile to easily run a Tor node inside a container.
+Dockerfile to easily run a Tor node inside a container.
 
 ## Features
 
